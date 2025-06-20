@@ -1,0 +1,1123 @@
+select * from employees
+
+
+SQL
+
+
+Emp
+
+
+eno	name		sal	
+100	e1			20000
+108	e3			32000
+
+
+commit  --- like save
+rollback  --- like undo
+
+SQL Statements
+	DDL - Data Definition Language
+	DML- Data Manipulation Language
+	DCL - Data Control Language
+	TCL- Transaction Control Language
+	DRL- Data Retrieval Language
+
+
+
+DDL - auto commit commands
+	create
+	alter	
+	truncate
+	drop
+	rename
+DML
+	insert
+	update
+	delete
+DCL  - auto commit commands
+	grant
+	revoke
+TCL
+	commit
+	rollback
+	savepoint
+DRL
+	select
+
+
+
+select columnname1,columname2     from tablename;
+
+
+employees
+departments
+locations
+
+
+describe employees
+
+select first_name,salary from employees
+
+select * from employees
+
+select * 
+from employees
+
+select * fr
+om employees
+
+
+
+
+clauses
+
+select ----
+from ....
+where 
+group by
+having
+order by 
+
+
+select first_name,salary,3000+salary*12,(3000+salary)*12
+from employees;
+
+
+select first_name name,salary from employees;
+
+
+select first_name as name,salary from employees;
+
+
+select first_name "Emp Name",salary from employees;
+
+
+select first_name||last_name "Full Name" from employees;
+
+
+select first_name||' '||last_name "Full Name" from employees;
+select first_name||' is earning $'||salary from employees;
+
+select department_id from employees;
+
+select distinct department_id from employees;
+
+
+select ....
+from ....
+where columnname=value
+
+comparison operators
+=,<,>,<=,>=,<>
+in
+between
+like
+is null
+
+
+select first_name,salary,department_id from employees where department_id=30;
+
+
+select first_name,salary,department_id from employees where first_name='Steven';
+
+
+select first_name,salary,hire_date from employees where hire_date>'12-jun-06';
+
+
+select first_name,salary,hire_date from employees
+where salary between 16000 and 20000;
+
+
+select first_name,salary,department_id from employees
+where department_id in (20,10,30);
+
+select first_name,salary,hire_date from employees
+where first_name between 'Kevin' and 'Pat';
+
+
+select first_name,salary,hire_date from employees
+ where first_name like 'A%';
+
+
+select first_name,salary,hire_date from employees
+ where first_name like '%y';
+
+select first_name,salary,hire_date from employees
+ where first_name like '_a%';
+
+select first_name,salary,hire_date from employees
+ where first_name like '___';
+
+
+select first_name,salary,commission_pct from employees;
+
+select first_name,salary,commission_pct from employees where commission_pct=null;
+
+
+select first_name,salary,commission_pct from employees where commission_pct is null;
+
+
+select first_name,salary,commission_pct from employees
+order by salary;
+
+
+select first_name,salary,commission_pct from employees
+order by salary asc;
+
+
+select first_name,salary,commission_pct from employees
+order by salary desc;
+
+
+select first_name,salary,commission_pct from employees
+order by first_name;
+
+
+select first_name,salary,department_id from employees
+order by department_id,salary;
+
+select first_name,salary,department_id from employees
+order by department_id desc,salary;
+
+
+select employee_id,salary,department_id from employees
+where employee_id=100;
+
+
+
+select employee_id,salary,department_id from employees
+where employee_id=&emp_id;
+
+select first_name,lower(first_name),upper(first_name),initcap(first_name) from employees;
+
+
+select concat(first_name,last_name) "Full Name" from employees;
+
+
+select concat(concat(first_name,' '),last_name) "Full Name" from employees;
+
+select first_name,substr(first_name,4,3),substr(first_name,4) from employees;
+
+select first_name,length(first_name) from employees
+where length(first_name)>7;
+
+select first_name,instr(first_name,'a'),instr(first_name,'a',3) from employees;
+
+select first_name,lpad(first_name,8,'*'),rpad(first_name,8,'*') from employees;
+
+select first_name,ltrim(first_name,'S'),rtrim(first_name,'n') from employees;
+
+select first_name,replace(first_name,'a','A') from employees;
+
+
+select round(2397.256,0),round(2397.256),round(2397.256,2) from dual;
+
+
+select trunc(2397.256,0),trunc(2397.256),trunc(2397.256,2) from dual;
+
+select first_name,salary,mod(salary,1000) from employees;
+
+select sqrt(34556),power(977,8) from dual;
+
+select first_name,hire_date,hire_date+10,hire_date-10,sysdate-hire_date from employees;
+
+select first_name,hire_date,months_between(sysdate,hire_date),add_months(hire_date,12),
+next_day(hire_date,'Sunday'),last_day(hire_date) from employees;
+
+
+select first_name,salary from employees where employee_id=190;
+
+SQL> select first_name,salary from employees where employee_id='190';
+
+FIRST_NAME               SALARY
+-------------------- ----------
+Timothy                   14901
+
+SQL> select first_name,salary from employees where employee_id='190a';
+select first_name,salary from employees where employee_id='190a'
+                                                          *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+select sysdate from dual;
+
+select to_char(sysdate,'dd/mm/yy hh:mi:ss') from dual;
+
+select to_char(sysdate,'Day ddspth Month Year ') from dual;
+select to_char(sysdate,'Day ddspth "of" Month Year ') from dual;
+select to_char(sysdate,'d dd ddd w ww cc q ') from dual;
+
+'12-jan-22';
+do_date('jan-12-22','mon-dd-yy');
+
+
+select first_name,salary,to_char(salary,'$9,99,999.99'),to_char(salary,'$0,99,999.99') from employees;
+
+
+a+b+c
+
+
+
+select first_name,salary,commission_pct,(12*salary)+(12*salary*commission_pct) "Total Sal"
+from employees;
+
+nvl(commission_pct,0)
+
+
+select first_name,salary,commission_pct,
+nvl(commission_pct,0),(12*salary)+(12*salary*nvl(commission_pct,0)) "Total Sal"
+from employees;
+
+
+
+select count(employee_id),count(commission_pct),count(*) from employees;
+select avg(salary) from employees;
+
+SQL> select avg(salary) from employees where department_id=30;
+
+AVG(SALARY)
+-----------
+ 16805.1383
+
+
+select avg(commission_pct) from employees;
+
+
+select avg(nvl(commission_pct,0)) from employees;
+
+select max(salary),max(first_name),max(hire_date) from employees;
+
+select min(salary),min(first_name),min(hire_date) from employees;
+select count(employee_id),count(commission_pct),count(*) from employees;
+
+select sum(salary) from employees;
+select stddev(salary),variance(salary) from employees;
+
+
+select department_id,avg(salary) from employees
+group by department_id
+order by department_id;
+
+
+
+select department_id,first_name,avg(salary) from employees
+group by department_id
+order by department_id;
+
+
+select avg(salary) from employees
+group by department_id
+order by department_id;
+
+
+select department_id,job_id,sum(salary) from employees
+group by department_id,job_id
+order by department_id,job_id;
+
+
+
+select department_id,avg(salary) from employees
+group by department_id
+order by department_id;
+
+select department_id,avg(salary) from employees
+group by department_id
+where avg(salary)>4000
+order by department_id;
+
+
+select department_id,avg(salary) from employees
+group by department_id
+having avg(salary)>16000
+order by department_id;
+
+
+
+select department_id,avg(salary) from employees
+where commission_pct is null
+group by department_id
+having avg(salary)>5000
+order by department_id;
+
+Krishna 9880214523
+
+
+select last_name,department_name
+from employees e,departments d
+where e.department_id=d.department_id;
+
+select last_name,department_name
+from employees e join departments d
+on e.department_id=d.department_id;
+
+employees 107
+departments 27
+107*27
+select count(distinct department_id) from employees;
+select count(distinct department_id) from departments;
+
+*inner join  -- display matching records  --106
+select last_name,department_name
+from employees e,departments d
+where e.department_id=d.department_id;
+
+select last_name,department_name
+from employees e join departments d
+on e.department_id=d.department_id;
+
+
+select last_name,department_id,department_name
+from employees e join departments d
+on e.department_id=d.department_id;
+
+*outer join  -- display matching records and non matching records
+    * left outer join  106+1=107
+select last_name,department_name
+from employees e join departments d
+on e.department_id=d.department_id;
+
+select last_name,department_name
+from employees e join departments d
+on e.department_id=d.department_id;
+* left outer join 106+1=107
+select last_name,department_name
+from employees e left outer join departments d
+on e.department_id=d.department_id;
+    * right outer join 106+16=122
+select last_name,department_name
+from employees e right outer join departments d
+on e.department_id=d.department_id;
+
+    * full outer join  106+1+16=123
+
+select last_name,department_name
+from employees e,departments d
+where e.department_id=d.department_id;
+
+select last_name,department_name
+from employees e full outer join departments d
+on e.department_id=d.department_id;
+
+
+
+select last_name,e.department_id,department_name
+from employees e,departments d
+where e.department_id=d.department_id;
+
+select last_name,e.department_id,department_name
+from employees e join departments d
+on e.department_id=d.department_id;
+
+
+107*28
+
+
+employees 
+No. of records : 107
+1 employee does't have department_id
+
+departments 
+No. of records  : 28
+17 departments don't have employees
+
+inner join - display matching records - 106
+
+select last_name,e.department_id,department_name
+from employees e join departments d
+on e.department_id=d.department_id;
+    * equi join
+    * non equi join
+    * self join
+         select worker.last_name "Emp",manager.last_name "Mgr"
+         from employees worker,employees manager
+         where worker.manager_id=manager.employee_id;
+
+outer join  - display matching and non matching records
+	* left outer join
+         - display matching and non matching records from employees(left table)(106+1)
+
+
+
+
+
+select last_name,e.department_id,department_name
+from employees e left outer join departments d
+on e.department_id=d.department_id; 
+
+	* right outer join
+        - display matching and non matching records from departments (right table)(106+17=123)
+
+
+select last_name,d.department_id,department_name
+from employees e right outer join departments d
+on e.department_id=d.department_id;  
+
+	* full outer join
+        - display matching and non matching records from employees and departments(left and right tables)(106+1+17=124)
+
+select last_name,d.department_id,department_name
+from employees e full outer join departments d
+on e.department_id=d.department_id;
+
+
+select last_name,department_id,department_name
+from employees e full outer join departments d
+on e.department_id=d.department_id;
+
+
+select e.last_name,d.department_id,d.department_name
+from employees e full outer join departments d
+on e.department_id=d.department_id;
+
+
+
+select employee_id,first_name,manager_id from employees
+order by employee_id;
+
+
+
+select employee_id,first_name,manager_id
+from employees order by employee_id;
+
+select worker.first_name "Emp",manager.first_name "Mgr"
+from employees worker join employees manager
+on worker.manager_id=manager.employee_id;
+
+desc employees;
+desc departments;
+
+select first_name,department_name
+from employees natural join departments;
+X    Y
+a b  a b
+
+select first_name,department_name
+from employees e, departments d
+where e.department_id=d.department_id and e.manager_id=d.mnager_id;
+
+select e.last_name,d.department_name,l.city
+from employees e join departments d
+on e.department_id=d.department_id
+join locations l
+on d.location_id=l.location_id;
+
+107*28*20
+106
+
+
+*inner join
+   * equi join
+   * non equi join
+   * self join
+
+
+
+* cross join
+select e.last_name,d.department_name
+from employees e cross join departments d;
+
+
+select last_name,e.department_id,department_name
+from employees e join departments d
+on e.department_id=d.department_id and employee_id=120;
+
+
+
+select ....
+from ....
+where col=(select ....)
+
+
+step 1 --->step 2
+q1-->q2
+
+
+
+Task
+
+Display details of employee who is earning maximum salary in the company.
+
+select max(salary) from employees;
+
+select first_name,salary from employees where salary=(select max(salary) from employees);
+
+
+single row sub query - returns single value or row 
+multirow subquery    - returns multiple values or rows
+
+
+comparison operators
+	single row operator ---       =, >,<,>=,<=,<>
+      multi row  operators ---      ANY,ALL,IN,NOT IN
+
+
+select department_id,avg(salary) from employees
+group by department_id
+order by department_id;
+
+
+select department_id,avg(salary) from employees
+group by department_id
+having avg(salary)>(select avg(salary) from employees)
+order by department_id;
+
+
+
+select distinct manager_id from employees;
+
+
+select first_name,employee_id from employees where employee_id in
+(select distinct manager_id from employees);
+
+
+
+select first_name,employee_id from employees where employee_id not in
+(select distinct manager_id from employees where manager_id is not null);
+
+select ...
+union
+select ...
+
+
+select department_id,hire_date from employees
+union
+select department_id,location_id from departments;
+
+
+select department_id,to_number(null) location_id,hire_date from employees
+union
+select department_id,location_id,to_date(null) from departments;
+
+
+emp1
+emp2
+
+
+1emp  -- not valid
+
+#$_
+
+
+emp_details
+
+
+
+drop table emp purge;
+
+create table emp(eno number(4),name varchar2(20),sal number(8,2) default 10000,hire_date date);
+
+
+number
+char   -- fixed length data type
+varchar2 - variable length data type
+date
+
+
+name char(30);
+name='Vinod';
+
+
+name varchar2(30);
+name='Vinod';
+
+emp
+eno	sal   dno
+100	null  10
+
+sal=234455.34
+
+hire_date='12-jul-21';
+
+insert into emp values(200,'Vikas',20000,'12-jul-20');
+
+insert into emp(name,eno,sal,hire_date) values('Rekha',309,30000,'23-dec-19');
+insert into emp(eno,name) values(290,'Smita');
+select * from emp;
+
+SQL> select * from emp;
+
+       ENO NAME                        SAL HIRE_DATE
+---------- -------------------- ---------- ---------
+       200 Vikas                     20000 12-JUL-20
+       309 Rekha                     30000 23-DEC-19
+       290 Smita                     28777
+
+SQL> update emp set sal=28777,name='Anand' where eno=390;
+
+0 rows updated.
+
+SQL> update emp set sal=28777,name='Anand' where eno=309;
+
+1 row updated.
+
+SQL> select * from emp;
+
+       ENO NAME                        SAL HIRE_DATE
+---------- -------------------- ---------- ---------
+       200 Vikas                     20000 12-JUL-20
+       309 Anand                     28777 23-DEC-19
+       290 Smita                     28777
+
+update emp set sal=28777,name='Anand';   -- all the rows will be updated;
+SQL> delete from emp where eno=200;
+
+1 row deleted.
+
+SQL> select * from emp;
+
+       ENO NAME                        SAL HIRE_DATE
+---------- -------------------- ---------- ---------
+       309 Anand                     28777 23-DEC-19
+       290 Smita                     28777
+
+delete from emp;  -- all the records will be deleted
+
+
+
+
+
+SQL> insert into emp values(208,'Hari',null,null);
+
+1 row created.
+
+SQL> select * from emp;
+
+       ENO NAME                        SAL HIRE_DATE
+---------- -------------------- ---------- ---------
+       309 Anand                     28777 23-DEC-19
+       290 Smita                     28777
+       208 Hari
+
+
+emp
+eno	name		sal
+100	e1			2000
+100    e2			3000
+233                     4000
+299     e3            -2999
+           e7            3000
+
+
+
+drop table emp purge;
+create table emp(eno number(4) primary key,name varchar2(20),sal number(8,2));
+
+drop table emp purge;
+create table emp(eno number(4) constraint emp_pk primary key,name varchar2(20),sal number(8,2));
+
+SQL> insert into emp values(2000,'Vikas',23000);
+
+1 row created.
+
+SQL> insert into emp values(2000,'Ravi',24000);
+insert into emp values(2000,'Ravi',24000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (HR.EMP_PK) violated
+
+
+drop table emp purge;
+create table emp(eno number(5) constraint emp_uq unique,name varchar2(20) constraint emp_name_nn not null,sal number(8,2) constraint emp_chk check(sal>0 and sal<800000));
+
+SQL> create table emp(eno number(5) constraint emp_uq unique,name varchar2(20) constraint emp_name_nn not null,sal number(8,2) constraint emp_chk check(sal>0 and sal<800000));
+
+Table created.
+
+SQL> insert into emp values(100,'Anil',29000);
+
+1 row created.
+
+SQL> insert into emp values(100,'Reena',29000);
+insert into emp values(100,'Reena',29000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (HR.EMP_UQ) violated
+
+
+SQL> insert into emp values(1003,null,29000);
+insert into emp values(1003,null,29000)
+                            *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("HR"."EMP"."NAME")
+
+
+SQL> insert into emp values(1003,'Ramya',29000);
+
+1 row created.
+
+SQL> insert into emp values(1022,'Ram',-20000);
+insert into emp values(1022,'Ram',-20000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (HR.EMP_CHK) violated
+
+
+
+
+
+Dept - Parent
+dno			dname
+10				Sales
+20				IT
+
+
+Emp - Child
+eno			sal			dno(fk-->dept(dno))
+100			2000		20
+
+Process of creating foreign key
+
+1. Create parent table dept with primary key on dno
+2. Create child table emp with foreign key
+3. insert records into parent table dept
+4. insert into child table emp
+
+drop table dept purge;
+drop table emp purge;
+
+create table dept(dno number(4) constraint dept_pk primary key,dname varchar2(20));
+create table emp(eno number(5),sal number(8,2),dno number(4) constraint emp_fk references dept(dno));
+
+SQL> insert into dept values(10,'Sales');
+
+1 row created.
+
+SQL> insert into dept values(20,'IT');
+
+1 row created.
+
+SQL> insert into emp values(190,30000,10);
+
+1 row created.
+
+SQL> insert into emp values(134,3900,50);
+insert into emp values(134,3900,50)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (HR.EMP_FK) violated - parent key not found
+
+
+alter table
+	add column
+	drop column
+	change datatype of the column
+	resize the column
+	add constraint
+	drop constraint
+	rename column/constraint
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO                                                NUMBER(5)
+ SAL                                                NUMBER(8,2)
+ DNO                                                NUMBER(4)
+
+SQL> alter table emp add(name varchar2(20));
+
+Table altered.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO                                                NUMBER(5)
+ SAL                                                NUMBER(8,2)
+ DNO                                                NUMBER(4)
+ NAME                                               VARCHAR2(20)
+
+SQL> alter table emp modify(sal number(9,2));
+
+Table altered.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO                                                NUMBER(5)
+ SAL                                                NUMBER(9,2)
+ DNO                                                NUMBER(4)
+ NAME                                               VARCHAR2(20)
+
+SQL> alter table emp modify(eno char(20));
+
+Table altered.
+
+SQL> insert into emp values(100,30000,10,'e1');
+insert into emp values(100,30000,10,'e1')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (HR.EMP_FK) violated - parent key not found
+
+
+SQL> insert into dept values(10,'Sales');
+
+1 row created.
+
+SQL> insert into emp values(100,30000,10,'e1');
+
+1 row created.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO                                                CHAR(20)
+ SAL                                                NUMBER(9,2)
+ DNO                                                NUMBER(4)
+ NAME                                               VARCHAR2(20)
+SQL> alter table emp disable constraint emp_chk;
+
+Table altered.
+
+SQL> alter table emp enable constraint emp_chk;
+
+Table altered.
+
+SQL> alter table emp drop constraint emp_chk;
+
+Table altered.
+SQL> alter table emp drop column name;
+
+SQL> truncate table emp;
+
+Table truncated.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO                                                CHAR(20)
+ SAL                                                NUMBER(9,2)
+ DNO                                                NUMBER(4)
+
+SQL> drop table emp;
+
+Table dropped.
+
+SQL> desc emp;
+ERROR:
+ORA-04043: object emp does not exist
+SQL> create table emp as select employee_id id,first_name name,salary from employees where department_id=30;
+
+Table created.
+
+SQL> select * from emp;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+       114 Vikas                  19425.33
+       115 Alexander          16531.1
+       116 Shelli                  16411.1
+       117 Sigal                   16301.1
+       118 Guy                     16081.1
+       119 Karen                  16081.1
+
+6 rows selected.
+
+select constraint_name,constraint_type from user_constraints where table_name='EMPLOYEES';
+
+
+
+database session -- duration between loggin and loggout from the database
+transaction
+
+commit --- save
+rollback --- undo
+
+
+loggin 
+9:00
+---- <---
+insert
+insert
+update
+delete
+delete
+commit;   9:10--
+update
+update
+insert 
+insert      9:15
+rollback;
+--
+
+
+
+
+
+
+loggout
+5:00'
+
+DDL  -- autocommit
+DCL   -- autocommit
+
+
+
+emp
+eno		sal
+100		20000-->30000
+102		30000
+
+
+create or replace view emp_30 as select employee_id id,salary,salary*12 ann_sal,salary*0.1 tax,department_id from employees
+where department_id=30;
+select * from emp_30;
+
+emp_30--->employees
+
+
+user_views
+emp_30   select .....
+
+ drop view emp_30;
+
+create or replace view emp_30 as select employee_id id,salary,salary*12 ann_sal,salary*0.1 tax,job_id,department_id from employees
+where department_id=30;
+select * from emp_30;
+
+
+drop table emp purge;
+create table emp(eno number(4) constraint emp_pk primary key ,sal number(8,2));
+
+drop sequence sq;
+create sequence sq
+increment by 1
+start with 4
+minvalue 3
+maxvalue 20
+cycle
+cache 5;
+
+4 5 6 7 8 
+
+insert into emp values(sq.nextval,30000);
+
+select sq.currval from dual;
+
+
+
+
+Emp
+eno	sal
+105	20000
+100	30000
+102	40000
+180	20998
+150     3999
+
+
+
+select * from emp where eno=100;
+
+
+Index
+key	rowid
+100    -----
+102    -----
+105    ----
+150    ----
+180    ----
+
+select * from emp where eno+1=90;
+
+create index emp_idx on emp(eno);
+
+drop index emp_idx;
+
+SQL> create synonym e99 for employees;
+
+Synonym created.
+
+SQL> select first_name from e99 where employee_id=180;
+
+FIRST_NAME
+--------------------
+Winston
+
+
+user_indexes
+user_views
+user_sequences
+user_synonyms
+
+select index_name from user_indexes where table_name='EMPLOYEES';
+
+select text from user_views where view_name='EMP_30';
+select * from user_sequences where sequence_name='SQ';
+SELECT * FROM USER_SYNONYMS WHERE SYNONYM_NAME='E10';
+
+DCL
+	grant
+	revoke
+
+privilege
+
+table
+	select
+	update
+	delete
+	alter
+	references
+	all
+view
+	select
+	insert
+	update
+	delete
+sequence
+	select
+	alter
+
+SQL> connect hr/hr@orclpdb
+Connected.
+SQL> grant select,update on employees to ebiz_user;
+
+Grant succeeded.
+
+SQL> revoke select on employees from ebiz_user;
+
+Revoke succeeded.
+
+Enter user-name: ebiz_user/oracle@orclpdb
+Last Successful login time: Sat May 21 2022 11:22:58 +05:30
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> select first_name,salary from hr.employees where employee_id=100;
+
+FIRST_NAME               SALARY
+-------------------- ----------
+Steven                    24001
+
+SQL> select first_name,salary from hr.employees where employee_id=100;
+select first_name,salary from hr.employees where employee_id=100
+                                 *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+delete from emp where rowid not in
+(select min(rowid) from emp group by eno,sal);
+
+SQL> select * from emp;
+
+       ENO        SAL
+---------- ----------
+       100      20000
+       100      20000
+       101      30000
+
+SQL>
+SQL> delete from emp where rowid not in
+  2  (select min(rowid) from emp group by eno,sal);
+
+1 row deleted.
+
+SQL> select * from emp;
+
+       ENO        SAL
+---------- ----------
+       100      20000
+       101      30000
+

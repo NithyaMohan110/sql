@@ -1,0 +1,113 @@
+select first_name from employees
+where first_name like 'A%';
+select first_name from employees
+where first_name like '%y';
+select first_name from employees
+where first_name like '%a%';
+select first_name from employees
+where first_name like '_a%';
+select first_name from employees
+where first_name like '%a_';
+select first_name from employees
+where first_name like '___';
+
+select first_name,commission_pct from employees
+where commission_pct=null
+
+
+select first_name,commission_pct from employees
+where commission_pct is null
+
+
+select first_name,commission_pct from employees
+where commission_pct is not null
+
+select first_name,department_id,salary from employees
+order by department_id
+
+
+select first_name,department_id,salary from employees
+order by department_id,salary
+
+
+select first_name,department_id,salary from employees
+order by 2,3
+
+select ...
+from ..
+where ...
+group by
+having 
+order by
+
+select first_name,salary,employee_id from employees
+where employee_id=100;
+
+
+select first_name,salary,employee_id from hr.employees
+where employee_id=&emp_id
+
+
+select first_name,salary,employee_id from hr.employees
+&where_clause
+
+select first_name,substr(first_name,5,3),substr(first_name,5),substr(first_name,-3,1) from employees;
+
+select instr(first_name,'a'),instr(first_name,'a',3),instr(first_name,'a',3,2)
+from employees''
+
+
+select first_name,hire_date,months_between(sysdate,hire_date),add_months(hire_date,4),next_day(hire_date,'Sunday'),last_day(hire_date) from employees
+
+select sysdate from dual;
+
+
+select to_char(sysdate,'Day dd-mm-yyyy hh:mi:ss') from dual;
+
+select to_char(sysdate,'Day ddspth year') from dual;
+
+select to_char(sysdate,'d dd ddd w ww cc q') from dual;
+
+
+$34,008
+
+to_number('$34,008','$99,999')
+
+select first_name,salary,commission_pct,(12*salary)+(12*salary*commission_pct) "Total Sal"
+from employees
+
+
+select first_name,salary,commission_pct,nvl(commission_pct,0),(12*salary)+(12*salary*nvl(commission_pct,0)) "Total Sal"
+from employees
+
+select department_id,avg(salary)
+from employees
+group by department_id;
+
+select department_id,avg(salary)
+from employees
+group by department_id
+having avg(salary)>9000
+
+
+select department_id,avg(salary)
+from employees
+group by department_id
+where avg(salary)>9000
+
+
+select department_id,avg(salary)
+from employees
+where commission_pct is null
+group by department_id
+having avg(salary)>9000
+
+
+select department_id,first_name,avg(salary)
+from employees
+group by department_id;
+
+
+select avg(salary)
+from employees
+group by department_id;
